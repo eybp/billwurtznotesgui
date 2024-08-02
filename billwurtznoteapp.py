@@ -2,13 +2,14 @@ import tkinter as tk
 from tkinter import messagebox
 import csv
 import os
+import json
 from datetime import datetime
 
 class NoteApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Note Storage")
-        self.notes = []
+        self.notes = self.load_notes()
 
         if not os.path.exists("notes"):
             os.makedirs("notes")
@@ -28,6 +29,16 @@ class NoteApp:
 
         self.export_button = tk.Button(root, text="Export to CSV", command=self.export_to_csv)
         self.export_button.grid(row=3, column=0, columnspan=2, pady=10)
+
+    def load_notes(self):
+        if os.path.exists("notes_data.json"):
+            with open("notes_data.json", "r") as file:
+                return json.load(file)
+        return []
+
+    def save_notes(self):
+        with open("notes_data.json", "w") as file:
+            json.dump(self.notes, file, indent=4)
 
     def save_note(self):
         filename = self.filename_entry.get()
@@ -55,7 +66,9 @@ class NoteApp:
             try:
                 with open(file_path, "w") as file:
                     file.write(html_content.strip())
+                
                 self.notes.append({"filename": filename, "date": date, "time": time})
+                self.save_notes()  # Save notes to JSON file
                 self.clear_entries()
                 messagebox.showinfo("Info", f"Note saved successfully as {filename}!")
             except Exception as e:
