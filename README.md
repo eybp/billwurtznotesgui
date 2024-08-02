@@ -3,3 +3,6 @@ note taker app designed to work with bill wurtz's notebook seen at https://billw
 
 # motive
 was making my own website cause im bored asf and inspected bill wurtz's for inspiration. saw how time consuming that shit would take to write manually and decided to automate it
+
+# how to run
+its a python file bro cmon now
