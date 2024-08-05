@@ -7,3 +7,7 @@ was making my own website cause im bored asf and inspected bill wurtz's for insp
 # how to run
 its a python file bro cmon now
 but once ur done taking notes and export to csv use the csv loader to make the final html page
+
+# update
+
+ended up making a cooler more better version looking back this one kinda sucked
